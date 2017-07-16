@@ -1,0 +1,19 @@
+{
+  "name": "wikistack_1",
+  "version": "1.0.0",
+  "description": "Sequelize Express Wiki like app",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/vinayarv/wikistack.git"
+  },
+  "author": "Vinaya",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/vinayarv/wikistack/issues"
+  },
+  "homepage": "https://github.com/vinayarv/wikistack#readme"
+}
