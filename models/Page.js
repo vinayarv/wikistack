@@ -22,7 +22,20 @@ const Page = db.define('page', {
   },
   status: {
     type: Sequelize.ENUM('open', 'closed')
+  },
+  date: {
+    type: Sequelize.DATE,
+    defaultValue: Sequelize.NOW
   }
-});
+},
+{
+  getterMethods: {
+    route: () => {
+      return '/wiki/' + this.title;
+    }
+  }
+}
+
+);
 
 module.exports = Page;
