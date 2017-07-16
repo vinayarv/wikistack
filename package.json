@@ -2,8 +2,9 @@
   "name": "wikistack_1",
   "version": "1.0.0",
   "description": "Sequelize Express Wiki like app",
-  "main": "index.js",
+  "main": "app.js",
   "scripts": {
+    "start": "nodemon -e html,js,css app.js",
     "test": "echo \"Error: no test specified\" && exit 1"
   },
   "repository": {
@@ -15,5 +16,15 @@
   "bugs": {
     "url": "https://github.com/vinayarv/wikistack/issues"
   },
-  "homepage": "https://github.com/vinayarv/wikistack#readme"
+  "homepage": "https://github.com/vinayarv/wikistack#readme",
+  "dependencies": {
+    "body-parser": "1.17.2",
+    "express": "4.15.3",
+    "morgan": "1.8.2",
+    "nodemon": "1.11.0",
+    "nunjucks": "3.0.1",
+    "pg": "6.4.1",
+    "pg-hstore": "2.3.2",
+    "sequelize": "3.30.4"
+  }
 }
