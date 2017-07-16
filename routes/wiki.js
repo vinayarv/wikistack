@@ -1,5 +1,6 @@
 var router = require('express').Router();
 var Page = require('../models/Page');
+var User = require('../models/User');
 
 router.get('/', function(req, res, next) {
   Page.findAll()
@@ -8,7 +9,30 @@ router.get('/', function(req, res, next) {
 });
 
 router.post('/', function(req, res, next) {
-  res.json(req.body);
+    User.findOrCreate({
+      where: {
+        name: req.body.name,
+        email: req.body.email
+      }
+    })
+    .then(function (values) {
+
+      var user = values[0];
+
+      var page = Page.build({
+        title: req.body.title,
+        content: req.body.content
+      });
+
+      return page.save().then(function (page) {
+        return page.setAuthor(user);
+      });
+
+    })
+    .then(function (page) {
+      res.redirect(page.route);
+    })
+    .catch(next);
 });
 
 router.get('/add', function(req, res, next) {
