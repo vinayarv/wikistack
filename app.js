@@ -5,6 +5,7 @@ var express = require('express');
 var router = express.Router();
 var app = express();
 var models = require('./models');
+var routes = require('./routes');
 
 app.use(morgan('dev'));
 app.use(bodyParser.urlencoded({extended: true}));
@@ -20,8 +21,14 @@ app.set('view engine', 'html');
 // when res.render works with html files, have it use nunjucks to do so
 app.engine('html', nunjucks.render);
 
+app.use('/', routes);
 
-models.User.sync({})
+app.use((err, req, res, next) => {
+  console.error(err.stack);
+  res.status(500).send('Something broke!');
+})
+
+models.User.sync({force: true})
 .then( () => models.Page.sync({}))
 .then( () => {
   app.listen(3000, () => {

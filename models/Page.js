@@ -31,7 +31,15 @@ const Page = db.define('page', {
 {
   getterMethods: {
     route: () => {
-      return '/wiki/' + this.title;
+      return '/wiki/' + this.urlTitle;
+    }
+  },
+  hooks: {
+    beforeValidate: () => {
+      let title = this.getDataValue('title');
+      title = title ? title.replace('/\s/g', '_').replace('/\W/g', '')
+                    : Math.random().toString(36).substring(2, 7);
+      this.setDataValue('urlTitle',  title);
     }
   }
 }
